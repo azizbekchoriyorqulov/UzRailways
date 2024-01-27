@@ -25,7 +25,7 @@ public class Kadr extends BaseEntity
     public Date oxirgiTibbiyKorik;
     public Date keyingiTibbiyKorik;
     public String phoneNumber;
-    public String jshshr;
+    public String jshshir;
     @Enumerated(value = EnumType.STRING)
     public StatusKadr status;
     @OneToOne

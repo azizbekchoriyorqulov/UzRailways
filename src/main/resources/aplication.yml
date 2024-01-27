@@ -7,7 +7,7 @@ spring:
   datasource:
     username: postgres
     password: 1111
-    url: jdbc:postgresql://localhost:5432/rw
+    url: jdbc:postgresql://localhost:5432/uz_railways_db
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

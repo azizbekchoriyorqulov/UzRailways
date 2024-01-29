@@ -1,6 +1,5 @@
 package com.example.uzrailways.service;
 
-import com.example.uzrailways.domain.entity.BaseEntity;
 import com.example.uzrailways.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

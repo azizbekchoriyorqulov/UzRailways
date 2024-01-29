@@ -1,4 +1,4 @@
-package com.example.uzrailways.domain.entity;
+package com.example.uzrailways.entity;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;

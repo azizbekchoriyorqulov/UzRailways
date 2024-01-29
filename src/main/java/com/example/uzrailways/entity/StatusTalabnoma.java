@@ -1,4 +1,4 @@
-package com.example.uzrailways.domain.entity;
+package com.example.uzrailways.entity;
 
 
 public enum StatusTalabnoma {

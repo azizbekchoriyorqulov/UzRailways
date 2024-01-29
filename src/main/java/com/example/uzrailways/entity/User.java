@@ -1,8 +1,7 @@
-package com.example.uzrailways.domain.entity;
+package com.example.uzrailways.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 

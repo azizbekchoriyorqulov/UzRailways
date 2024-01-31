@@ -1,4 +1,5 @@
-import com.example.uzrailways.entity.BaseEntity;
+package com.example.uzrailways.entity;
+
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;

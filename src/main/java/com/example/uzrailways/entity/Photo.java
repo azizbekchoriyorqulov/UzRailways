@@ -7,8 +7,11 @@ import lombok.Setter;
 @Entity(name = "photo")
 @Getter
 @Setter
-public class Photo extends BaseEntity {
+public class Photo extends BaseEntity
+{
     public String fullName;
     public String httpUrl;
-    public String photoTpe;
+    public String fileUrl;
+    public String photoType;
+    public Long size;
 }

@@ -27,5 +27,4 @@ public class Kadr extends BaseEntity
     public StatusKadr status;
     @OneToOne
     public WordDoc wordDoc;
-
 }

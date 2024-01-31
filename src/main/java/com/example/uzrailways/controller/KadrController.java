@@ -1,9 +1,11 @@
 package com.example.uzrailways.controller;
 
 
+import com.example.uzrailways.entity.WordDoc;
 import com.example.uzrailways.model.KadrDTO;
 import com.example.uzrailways.service.KadrService.KadrService;
 import com.example.uzrailways.service.PhotoService;
+import com.example.uzrailways.service.WordDocService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.UUID;
 
@@ -26,6 +29,7 @@ public class KadrController
 {
     private  final KadrService kadrService ;
     private final PhotoService photoService;
+    private final WordDocService wordDocumentService;
 
     @GetMapping("/test")
     public ResponseEntity<?> test()
@@ -81,4 +85,17 @@ public class KadrController
     {
         return kadrService.delete(id);
     }
+
+    @PostMapping("/setWordDoc") /// CHALA .....
+    public ResponseEntity<?> addWordDocToKadr(@RequestParam("file")MultipartFile file ,  @RequestParam(value = "id")UUID id )
+    {
+        try
+        {
+            WordDoc savedFile = wordDocumentService.saveWordDocument(file,id);
+            return ResponseEntity.ok("Saqlandi . Path: " + savedFile.getHttpUrl());
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Error blyaa..." + e.getMessage());
+        }
+    }
+
 }

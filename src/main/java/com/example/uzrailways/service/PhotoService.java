@@ -34,6 +34,7 @@ public class PhotoService
                 photo.setSize(multipartFilePhoto.getSize());
                 photo.setPhotoType(multipartFilePhoto.getContentType());
                 photo.setFileUrl(uploadDir + multipartFilePhoto.getOriginalFilename() );
+                photo.setHttpUrl("http://localhost:8080/kadr/image/"+photo.getId());
                 photoRepository.saveAndFlush(photo);  // DB ga faqat rasm ma'lumotlari yozildi , rasmni o'zi emas
 
                 // mana endi Serverga saqlash boshlandi....

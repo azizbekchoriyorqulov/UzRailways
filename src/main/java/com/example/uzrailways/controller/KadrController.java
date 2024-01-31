@@ -70,4 +70,15 @@ public class KadrController
 
     }
 
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<?> editKadr(@PathVariable UUID id , @RequestBody KadrDTO updateTo )
+    {
+        return kadrService.update(id,updateTo) ;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteKadr(@PathVariable UUID id)
+    {
+        return kadrService.delete(id);
+    }
 }

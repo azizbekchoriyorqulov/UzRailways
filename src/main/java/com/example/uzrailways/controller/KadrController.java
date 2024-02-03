@@ -1,25 +1,16 @@
 package com.example.uzrailways.controller;
 
-
-import com.example.uzrailways.entity.WordDoc;
 import com.example.uzrailways.model.KadrDTO;
+import com.example.uzrailways.model.KadrResponse;
 import com.example.uzrailways.service.KadrService.KadrService;
 import com.example.uzrailways.service.PhotoService;
-import com.example.uzrailways.service.WordDocService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -29,7 +20,6 @@ public class KadrController
 {
     private  final KadrService kadrService ;
     private final PhotoService photoService;
-    private final WordDocService wordDocumentService;
 
     @GetMapping("/test")
     public ResponseEntity<?> test()
@@ -39,63 +29,41 @@ public class KadrController
 
     @PostMapping(value = "/add" , consumes = {MediaType.APPLICATION_JSON_VALUE ,
                                                  MediaType.MULTIPART_FORM_DATA_VALUE})
-    public  ResponseEntity<?> addKadr(@RequestPart("kadrDTO")String stringKadrDTO , @RequestPart("photo") MultipartFile photo)
+    public ResponseEntity<KadrResponse> addKadr(@RequestPart("kadrDTO")String stringKadrDTO ,
+                                                 @RequestPart("photo")MultipartFile photo)
     {
-        System.out.println("stringKadrDTO = " + stringKadrDTO);
-        ObjectMapper objectMapper = new ObjectMapper();
-        KadrDTO kadrDTO = null;
-        try
-        {
-          kadrDTO = objectMapper.readValue(stringKadrDTO, KadrDTO.class);
-        } catch (JsonProcessingException e) {
-        throw new RuntimeException(e+" JSON DAN KADRDTO YASASHDA MUAMMO....");
-    }
-        return kadrService.add(kadrDTO , photo);
+        return kadrService.add(stringKadrDTO , photo);
     }
 
     @GetMapping("/image/{photoId}")
-    public ResponseEntity viewPhoto(@PathVariable UUID photoId)
+    public ResponseEntity<?> viewPhoto(@PathVariable UUID photoId)
     {
-        String fileUrlById = photoService.findFileUrlById(photoId);
-        try {
-
-            Resource resource = new UrlResource(new File(fileUrlById).toURI());
-
-            // Check if the file exists
-            if (resource.exists() && resource.isReadable()) {
-                return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(resource);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-
+        return photoService.viewKadrPhoto(photoId);
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<?> editKadr(@PathVariable UUID id , @RequestBody KadrDTO updateTo )
+    public ResponseEntity<KadrResponse> editKadr(@PathVariable UUID id , @RequestBody KadrDTO updateTo )
     {
-        return kadrService.update(id,updateTo) ;
+//        return kadrService.update(id,updateTo) ;
+        return null;
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteKadr(@PathVariable UUID id)
+    public ResponseEntity<KadrResponse> deleteKadr(@PathVariable UUID id)
     {
-        return kadrService.delete(id);
+//        return kadrService.delete(id);
+        return null;
     }
 
-    @PostMapping("/setWordDoc") /// CHALA .....
-    public ResponseEntity<?> addWordDocToKadr(@RequestParam("file")MultipartFile file ,  @RequestParam(value = "id")UUID id )
-    {
-        try
-        {
-            WordDoc savedFile = wordDocumentService.saveWordDocument(file,id);
-            return ResponseEntity.ok("Saqlandi . Path: " + savedFile.getHttpUrl());
-        } catch (IOException e) {
-            return ResponseEntity.badRequest().body("Error blyaa..." + e.getMessage());
-        }
-    }
 
+    @GetMapping("/list")
+    public ResponseEntity<?> getListKadr(
+            @RequestParam(value = "page", defaultValue = "0")  Integer pageNum,
+            @RequestParam(value = "size", defaultValue = "100") Integer size ,
+            @RequestParam(value = "sortBy", defaultValue = "fullName") String sortBy ,
+            @RequestParam(value = "asc", defaultValue = "-1") String asc )
+    {
+        List<KadrDTO> listKadrDTO = kadrService.getListKadrAsDTO(pageNum, size, sortBy, asc);
+        return ResponseEntity.ok().body(new KadrResponse(true,"List kadr's",listKadrDTO));
+    }
 }

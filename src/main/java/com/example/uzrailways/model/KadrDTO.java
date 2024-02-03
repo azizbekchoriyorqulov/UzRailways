@@ -18,4 +18,6 @@ public class KadrDTO
     private String phoneNumber;
     private String jshshr;
     private String status;
+    private String photoHttpUrl;
+    private String wordFileHttpUrl;
 }

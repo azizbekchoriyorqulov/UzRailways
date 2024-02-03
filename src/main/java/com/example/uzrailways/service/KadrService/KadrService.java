@@ -3,7 +3,9 @@ package com.example.uzrailways.service.KadrService;
 import com.example.uzrailways.entity.Kadr;
 import com.example.uzrailways.entity.Photo;
 
+import com.example.uzrailways.mapper.KadrMapper;
 import com.example.uzrailways.model.KadrDTO;
+import com.example.uzrailways.model.KadrResponse;
 
 import com.example.uzrailways.repository.KadrRepository;
 import com.example.uzrailways.response.KadrResponse;
@@ -27,6 +29,7 @@ public class KadrService
     private final PhotoService photoService;
     private final KadrRepository kadrRepository;
     private final KadrMapper kadrMapper ;
+
 
 
     public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo)

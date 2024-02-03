@@ -15,7 +15,7 @@ public class Seh extends BaseEntity{
     public String sehNomi;
     public String ManagerName;
     @OneToOne
-    public  User ManagerSeh;
+    public  AuthUser ManagerSeh;
     @OneToMany
     public List<Mahsulot> Mahsulotlar;
 

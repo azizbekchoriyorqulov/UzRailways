@@ -2,6 +2,7 @@ package com.example.uzrailways.service;
 
 import com.example.uzrailways.entity.Photo;
 import com.example.uzrailways.repository.PhotoRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;

@@ -13,11 +13,11 @@ import java.util.List;
 @Setter
 public class Talabnomalar extends BaseEntity {
     @ManyToOne
-    public User kimga;
+    public AuthUser kimga;
     @ManyToOne
-    public User jonatuvchi;
+    public AuthUser jonatuvchi;
     @ManyToOne
-    public User tasdiqlovchi;
+    public AuthUser tasdiqlovchi;
     @OneToMany
     public List<Mahsulot> soralganMahsulotlar;
     @OneToMany

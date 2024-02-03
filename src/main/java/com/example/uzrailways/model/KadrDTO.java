@@ -11,7 +11,7 @@ import lombok.Setter;
 public class KadrDTO
 {
     private String fullName;
-    private String bolimRaqami;
+    private String sectionNumber;
     private String lavozim;
     private String oxirgiTibbiyKorik;
     private String keyingiTibbiyKorik;

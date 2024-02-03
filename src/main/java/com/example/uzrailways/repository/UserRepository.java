@@ -1,11 +1,16 @@
 package com.example.uzrailways.repository;
 
-import com.example.uzrailways.entity.User;
+import com.example.uzrailways.entity.AuthUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<AuthUser, Long> {
+    Boolean existsByUsername(String username);
+
+    Optional<AuthUser> findByUsername(String username);
 }
+

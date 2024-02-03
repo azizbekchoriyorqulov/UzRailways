@@ -1,7 +1,10 @@
 package com.example.uzrailways.controller;
 
 import com.example.uzrailways.model.KadrDTO;
+
 import com.example.uzrailways.model.KadrResponse;
+
+
 import com.example.uzrailways.service.KadrService.KadrService;
 import com.example.uzrailways.service.PhotoService;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +34,13 @@ public class KadrController
                                                  MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<KadrResponse> addKadr(@RequestPart("kadrDTO")String stringKadrDTO ,
                                                  @RequestPart("photo")MultipartFile photo)
+
     {
         return kadrService.add(stringKadrDTO , photo);
     }
 
     @GetMapping("/image/{photoId}")
+
     public ResponseEntity<?> viewPhoto(@PathVariable UUID photoId)
     {
         return photoService.viewKadrPhoto(photoId);
@@ -66,4 +71,5 @@ public class KadrController
         List<KadrDTO> listKadrDTO = kadrService.getListKadrAsDTO(pageNum, size, sortBy, asc);
         return ResponseEntity.ok().body(new KadrResponse(true,"List kadr's",listKadrDTO));
     }
+
 }

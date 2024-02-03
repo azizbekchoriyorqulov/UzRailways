@@ -2,6 +2,7 @@ package com.example.uzrailways.service;
 
 import com.example.uzrailways.entity.Photo;
 import com.example.uzrailways.repository.PhotoRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

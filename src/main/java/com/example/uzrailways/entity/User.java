@@ -16,6 +16,5 @@ public class User extends BaseEntity{
     public String password;
     public UUID kadrId;
     public String lavozim;
-    @ManyToOne
-    public Roll rol;
+    public UserRole rol;
 }

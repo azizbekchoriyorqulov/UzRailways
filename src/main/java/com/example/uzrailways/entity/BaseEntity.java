@@ -1,27 +1,34 @@
 package com.example.uzrailways.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@MappedSuperclass
+@NoArgsConstructor
 @Getter
 @Setter
+@MappedSuperclass
+@AllArgsConstructor
 public abstract class BaseEntity {
     @Id
-    @GeneratedValue
-    protected UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, updatable = false, nullable = false)
+    private Long id;
 
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     protected LocalDateTime createdDate;
-    @UpdateTimestamp
-    protected LocalDateTime updatedDate;
 
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    protected LocalDateTime updatedDate;
 }

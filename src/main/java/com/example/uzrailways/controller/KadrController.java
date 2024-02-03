@@ -44,7 +44,7 @@ public class KadrController
         {
           kadrDTO = objectMapper.readValue(stringKadrDTO, KadrDTO.class);
         } catch (JsonProcessingException e) {
-        throw new RuntimeException(e+" JSON DAN KADRDTO YASASHDA MUAMMO....");
+        throw new RuntimeException(e+" JSON DAN KADRDTO YASASHDA MUAMMO...");
     }
         return kadrService.add(kadrDTO , photo);
     }
@@ -56,7 +56,6 @@ public class KadrController
         try {
 
             Resource resource = new UrlResource(new File(fileUrlById).toURI());
-
             // Check if the file exists
             if (resource.exists() && resource.isReadable()) {
                 return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(resource);

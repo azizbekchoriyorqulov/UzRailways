@@ -17,7 +17,7 @@ public class Kadr extends BaseEntity
     public String fullName;
     @OneToOne
     public Photo rasm;
-    public String bolimRaqami;
+    public String sectionNumber;
     public String lavozim;
     public Date oxirgiTibbiyKorik;
     public Date keyingiTibbiyKorik;

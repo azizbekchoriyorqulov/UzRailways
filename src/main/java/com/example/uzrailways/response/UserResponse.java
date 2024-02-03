@@ -1,6 +1,6 @@
 package com.example.uzrailways.response;
 
-import com.example.uzrailways.entity.UserRole;
+import com.example.uzrailways.entity.Role;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class UserResponse {
     private String firstName;
     private String lastName;
     private String username;
-    private Set<UserRole> roles;
+    private Set<Role> roles;
     protected LocalDateTime createdDate;
     protected LocalDateTime updatedDate;
 }

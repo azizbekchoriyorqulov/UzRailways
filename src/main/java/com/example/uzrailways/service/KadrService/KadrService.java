@@ -26,7 +26,7 @@ public class KadrService
     {
         Kadr kadr = new Kadr();
         kadr.setFullName(kadrDTO.getFullName());
-        kadr.setBolimRaqami(kadrDTO.getBolimRaqami());
+        kadr.setSectionNumber(kadrDTO.getSectionNumber());
         kadr.setLavozim(kadrDTO.getLavozim());
         kadr.setPhoneNumber(kadrDTO.getPhoneNumber());
         kadr.setJshshr(kadrDTO.getJshshr());

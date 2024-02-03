@@ -1,6 +1,8 @@
 package com.example.uzrailways.response;
 
-import com.example.uzrailways.entity.UserRole;
+import com.example.uzrailways.entity.AuthRole;
+
+
 import lombok.*;
 
 
@@ -17,5 +19,5 @@ public class JwtResponse {
     private String username;
     private String firstName;
     private String lastName;
-    private Set<UserRole> roles;
+    private Set<AuthRole> roles;
 }

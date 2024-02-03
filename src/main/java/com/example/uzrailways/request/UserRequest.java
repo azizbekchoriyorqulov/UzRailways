@@ -1,6 +1,8 @@
 package com.example.uzrailways.request;
 
-import com.example.uzrailways.entity.UserRole;
+
+import com.example.uzrailways.entity.AuthRole;
+import com.example.uzrailways.entity.Role;
 import lombok.*;
 
 
@@ -44,5 +46,5 @@ public class UserRequest {
 //            message = "must have between 8 and 20 characters")
     private String password;
 
-    private Set<UserRole> roles;
+    private Set<AuthRole> roles;
 }

@@ -45,8 +45,10 @@ public class AuthUser extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+
     @Enumerated(EnumType.STRING)
-    private Set<UserRole> roles;
+    @ElementCollection
+    private Set<AuthRole> roles;
 
     @Column
     private boolean enabled = true;

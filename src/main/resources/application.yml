@@ -3,12 +3,12 @@ spring:
 
   datasource:
     username: postgres
-    password: 1111
-    url: jdbc:postgresql://localhost:5432/postgres
+    password: 1809
+    url: jdbc:postgresql://localhost:5432/uz_railways_db
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:

@@ -1,6 +1,6 @@
 package com.example.uzrailways.repository;
 
-import com.example.uzrailways.entity.Photo;
+import com.example.uzrailways.domain.entity.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

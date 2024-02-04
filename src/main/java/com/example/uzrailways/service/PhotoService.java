@@ -1,6 +1,6 @@
 package com.example.uzrailways.service;
 
-import com.example.uzrailways.entity.Photo;
+import com.example.uzrailways.domain.entity.Photo;
 import com.example.uzrailways.repository.PhotoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,7 @@ public class PhotoService
                 photo.setFullName(multipartFilePhoto.getOriginalFilename());
                 photo.setSize(multipartFilePhoto.getSize());
                 photo.setPhotoType(multipartFilePhoto.getContentType());
-                photo.setFileUrl(uploadDir + multipartFilePhoto.getOriginalFilename() );
+                photo.setFileUrl(uploadDir + multipartFilePhoto.getOriginalFilename());
 
                 Photo savedPhoto = photoRepository.saveAndFlush(photo);// DB ga faqat rasm ma'lumotlari yozildi , rasmni o'zi emas
                 savedPhoto.setHttpUrl("http://localhost:8080/kadr/image/"+savedPhoto.getId());

@@ -1,10 +1,10 @@
 package com.example.uzrailways.controller;
 
-import com.example.uzrailways.request.LoginRequest;
-import com.example.uzrailways.request.UserRequest;
-import com.example.uzrailways.response.ApiResponse;
-import com.example.uzrailways.response.JwtResponse;
-import com.example.uzrailways.service.AuthService.AuthService;
+import com.example.uzrailways.domain.request.auth.LoginRequest;
+import com.example.uzrailways.domain.request.auth.UserRequest;
+import com.example.uzrailways.domain.response.ApiResponse;
+import com.example.uzrailways.domain.response.JwtResponse;
+import com.example.uzrailways.service.auth.jwt.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;

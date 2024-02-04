@@ -1,7 +1,7 @@
 package com.example.uzrailways.entity;
 
 
-public enum StatusTalabnoma {
+public enum StatusRequest {
     YUBORILDI,
     TASDIQLANDI,
     BERILDI,

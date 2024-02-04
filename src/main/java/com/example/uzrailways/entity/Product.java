@@ -8,8 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Mahsulot extends BaseEntity{
+public class Product extends BaseEntity{
     public String name;
-    public String olchovBirligi;
-    public  Double miqdor;
+    //olchov birligi
+
+    public String unitOfMeasure;
+    //miqdor
+    public  Double amount;
 }

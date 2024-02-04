@@ -7,6 +7,6 @@ import lombok.Setter;
 @Entity(name = "Dalolatnoma")
 @Getter
 @Setter
-public class Dalolatnoma extends BaseEntity {
+public class Deed extends BaseEntity {
     public String name;
 }

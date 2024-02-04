@@ -16,11 +16,11 @@ public class Kadr extends BaseEntity
 {
     public String fullName;
     @OneToOne
-    public Photo rasm;
+    public Photo photo;
     public String sectionNumber;
-    public String lavozim;
-    public Date oxirgiTibbiyKorik;
-    public Date keyingiTibbiyKorik;
+    public String position;
+    public Date lastMedicalCheck;
+    public Date nextMedicalCheck;
     public String phoneNumber;
     public String jshshr;
     @Enumerated(value = EnumType.STRING)

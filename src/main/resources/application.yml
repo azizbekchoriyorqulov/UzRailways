@@ -18,6 +18,8 @@ jwt:
   access:
     key: 442A472D4B6150645367566B597033733676397924422ADC6DAC4EFD452BFE9482B4D62516554
     expiredAt: 36000
+uploadDir: C:/Users
+
 
 allowed:
   origins:

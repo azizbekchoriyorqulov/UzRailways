@@ -12,9 +12,9 @@ public class KadrDTO
 {
     private String fullName;
     private String sectionNumber;
-    private String lavozim;
-    private String oxirgiTibbiyKorik;
-    private String keyingiTibbiyKorik;
+    private String Postion;
+    private String lastMedicalCheck;
+    private String nextMedicalCheck;
     private String phoneNumber;
     private String jshshr;
     private String status;

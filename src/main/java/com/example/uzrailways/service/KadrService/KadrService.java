@@ -8,7 +8,7 @@ import com.example.uzrailways.model.KadrDTO;
 import com.example.uzrailways.model.KadrResponse;
 
 import com.example.uzrailways.repository.KadrRepository;
-import com.example.uzrailways.response.KadrResponse;
+
 import com.example.uzrailways.service.PhotoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,6 @@ public class KadrService
     private final KadrMapper kadrMapper ;
 
 
-
     public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo)
     {
         System.out.println("stringKadrDTO = " + stringKadrDTO);
@@ -47,7 +46,7 @@ public class KadrService
         Kadr kadr = kadrMapper.mapToEntity(kadrDTO);
 
         Photo photoOfKadr = photoService.savePhotoToServer(photo);
-        kadr.setRasm(photoOfKadr);
+        kadr.setPhoto(photoOfKadr);
 
         Kadr savedKadr = kadrRepository.save(kadr);
 

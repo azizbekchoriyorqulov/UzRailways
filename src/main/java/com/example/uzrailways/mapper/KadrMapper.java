@@ -16,24 +16,24 @@ public class KadrMapper {
     {
         KadrDTO kadrDTO = new KadrDTO();
         kadrDTO.setFullName(kadr.getFullName());
-        kadrDTO.setBolimRaqami(kadr.getBolimRaqami());
-        kadrDTO.setLavozim(kadr.getLavozim());
-        kadrDTO.setOxirgiTibbiyKorik(formatDate(kadr.getOxirgiTibbiyKorik()));
-        kadrDTO.setKeyingiTibbiyKorik(formatDate(kadr.getKeyingiTibbiyKorik()));
+        kadrDTO.setSectionNumber(kadr.getSectionNumber());
+        kadrDTO.setPostion(kadr.getPosition());
+        kadrDTO.setLastMedicalCheck(formatDate(kadr.getLastMedicalCheck()));
+        kadrDTO.setNextMedicalCheck(formatDate(kadr.getNextMedicalCheck()));
         kadrDTO.setPhoneNumber(kadr.getPhoneNumber());
         kadrDTO.setJshshr(kadr.getJshshr());
         kadrDTO.setStatus(kadr.getStatus().toString());
-        kadrDTO.setPhotoHttpUrl( "http://localhost:8080/kadr/image/"+kadr.getRasm().getId() );
+        kadrDTO.setPhotoHttpUrl( "http://localhost:8080/kadr/image/"+kadr.getPhoto().getId() );
         return kadrDTO;
     }
 
     public  Kadr mapToEntity(KadrDTO kadrDTO) {
         Kadr kadr = new Kadr();
         kadr.setFullName(kadrDTO.getFullName());
-        kadr.setBolimRaqami(kadrDTO.getBolimRaqami());
-        kadr.setLavozim(kadrDTO.getLavozim());
-        kadr.setOxirgiTibbiyKorik(parseDate(kadrDTO.getOxirgiTibbiyKorik()));
-        kadr.setKeyingiTibbiyKorik(parseDate(kadrDTO.getKeyingiTibbiyKorik()));
+        kadr.setSectionNumber(kadrDTO.getSectionNumber());
+        kadr.setPosition(kadrDTO.getPostion());
+        kadr.setLastMedicalCheck(parseDate(kadrDTO.getLastMedicalCheck()));
+        kadr.setNextMedicalCheck(parseDate(kadrDTO.getNextMedicalCheck()));
         kadr.setPhoneNumber(kadrDTO.getPhoneNumber());
         kadr.setJshshr(kadrDTO.getJshshr());
         kadr.setStatus(StatusKadr.valueOf(kadrDTO.getStatus()));

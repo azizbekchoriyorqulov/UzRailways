@@ -12,12 +12,12 @@ import java.util.List;
 @Getter
 @Setter
 public class Seh extends BaseEntity{
-    public String sehNomi;
+    public String sehName;
     public String ManagerName;
     @OneToOne
     public  AuthUser ManagerSeh;
     @OneToMany
-    public List<Mahsulot> Mahsulotlar;
+    public List<Product> Mahsulotlar;
 
 
 }

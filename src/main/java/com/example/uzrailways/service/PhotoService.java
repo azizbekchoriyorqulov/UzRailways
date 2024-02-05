@@ -64,12 +64,12 @@ public class PhotoService
         return null;
     }
 
-    public String findFileUrlById(UUID uuid)
+    public String findFileUrlById(Long id)
     {
-         return  photoRepository.findFileUrlById(uuid).orElse(null);
+         return  photoRepository.findFileUrlById(id).orElse(null);
     }
 
-    public ResponseEntity<?> viewCadrePhoto(UUID photoId)
+    public ResponseEntity<?> viewCadrePhoto(Long photoId)
     {
         String fileUrlById = findFileUrlById(photoId);
         if (fileUrlById==null)

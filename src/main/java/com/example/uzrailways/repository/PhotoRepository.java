@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface PhotoRepository extends JpaRepository<Photo , UUID>
+public interface PhotoRepository extends JpaRepository<Photo , Long>
 {
     @Query("SELECT p.fileUrl FROM photo p WHERE p.id = :id")
-    Optional<String> findFileUrlById(@Param("id") UUID id);
+    Optional<String> findFileUrlById(@Param("id") Long id);
 }

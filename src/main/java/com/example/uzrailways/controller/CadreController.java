@@ -34,8 +34,14 @@ public class CadreController {
         return cadreService.add(stringKadrDTO , photo);
     }
 
+    @GetMapping("/get/{id}")
+    public  ResponseEntity<KadrResponse> getCadreById(@PathVariable Long id)
+    {
+        return cadreService.findById(id);
+    }
+
     @GetMapping("/image/{photoId}")
-    public ResponseEntity<?> viewPhoto(@PathVariable UUID photoId) {
+    public ResponseEntity<?> viewPhoto(@PathVariable Long photoId) {
         return photoService.viewCadrePhoto(photoId);
     }
 
@@ -49,6 +55,12 @@ public class CadreController {
         return ResponseEntity.ok().body(new CadreResponse(true, "List cadres", dtoList));
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<KadrResponse> update(@PathVariable Long id ,
+                                               @RequestBody CadreDTO updateTo)
+    {
+        return cadreService.update(id,updateTo);
+    }
 }
 
 

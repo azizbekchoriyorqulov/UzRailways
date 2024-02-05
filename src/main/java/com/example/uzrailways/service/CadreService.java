@@ -3,6 +3,7 @@ package com.example.uzrailways.service;
 import com.example.uzrailways.domain.entity.Cadre;
 import com.example.uzrailways.domain.entity.Photo;
 import com.example.uzrailways.domain.model.CadreDTO;
+import com.example.uzrailways.domain.response.CadreResponse;
 import com.example.uzrailways.domain.response.KadrResponse;
 import com.example.uzrailways.mapper.CadreMapper;
 import com.example.uzrailways.repository.KadrRepository;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CadreService {
@@ -22,7 +25,8 @@ public class CadreService {
     private final ModelMapper modelMapper;
     private final CadreMapper cadreMapper;
 
-    public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo) {
+    public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo)
+    {
         System.out.println("stringKadrDTO = " + stringKadrDTO);
         ObjectMapper objectMapper = new ObjectMapper();
         CadreDTO cadreDTO;
@@ -40,6 +44,11 @@ public class CadreService {
         Cadre savedKadr = kadrRepository.save(cadre);
 
         return ResponseEntity.ok().body(new KadrResponse(true,"Succesfully saved",kadrMapper.mapToDTO(savedKadr)));
+
+    }
+
+    public List<CadreResponse> getListCadreAsDTO(Integer pageNum, Integer size, String sortBy, String asc)
+    {
 
     }
 }

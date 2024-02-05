@@ -1,6 +1,7 @@
 package com.example.uzrailways.mapper;
 
 import com.example.uzrailways.domain.entity.Cadre;
+import com.example.uzrailways.domain.enums.CadreStatus;
 import com.example.uzrailways.domain.model.CadreDTO;
 import org.springframework.stereotype.Component;
 
@@ -12,31 +13,31 @@ import java.util.stream.Collectors;
 
 @Component
 public class CadreMapper {
-    public CadreDTO mapToDTO(Cadre kadr)
+    public CadreDTO mapToDTO(Cadre cadre)
     {
         CadreDTO cadreDTO = new CadreDTO();
-        cadreDTO.setFullName(kadr.getFullName());
-        cadreDTO.setBolimRaqami(kadr.getBolimRaqami());
-        cadreDTO.setLavozim(kadr.getLavozim());
-        cadreDTO.setOxirgiTibbiyKorik(formatDate(kadr.getOxirgiTibbiyKorik()));
-        cadreDTO.setKeyingiTibbiyKorik(formatDate(kadr.getKeyingiTibbiyKorik()));
-        cadreDTO.setPhoneNumber(kadr.getPhoneNumber());
-        cadreDTO.setJshshr(kadr.getJshshr());
-        cadreDTO.setStatus(kadr.getStatus().toString());
-        cadreDTO.setPhotoHttpUrl( "http://localhost:8080/kadr/image/"+kadr.getRasm().getId() );
+        cadreDTO.setFullName(cadre.getFullName());
+        cadreDTO.setSectionNumber(cadre.getSectionNumber());
+        cadreDTO.setPosition(cadre.getPosition());
+        cadreDTO.setLastMedicalCheck(formatDate(cadre.getLastMedicalCheck()));
+        cadreDTO.setNextMedicalCheck(formatDate(cadre.getNextMedicalCheck()));
+        cadreDTO.setPhoneNumber(cadre.getPhoneNumber());
+        cadreDTO.setJshshr(cadre.getJshshr());
+        cadreDTO.setStatus(cadre.getStatus().toString());
+        cadreDTO.setPhotoHttpUrl( "http://localhost:8080/kadr/image/"+cadre.getPhoto().getId() );
         return cadreDTO;
     }
 
     public  Cadre mapToEntity(CadreDTO cadreDTO) {
         Cadre cadre = new Cadre();
         cadre.setFullName(cadreDTO.getFullName());
-        cadre.setBolimRaqami(cadreDTO.getBolimRaqami());
-        cadre.setLavozim(cadreDTO.getLavozim());
-        cadre.setOxirgiTibbiyKorik(parseDate(cadreDTO.getOxirgiTibbiyKorik()));
-        cadre.setKeyingiTibbiyKorik(parseDate(cadreDTO.getKeyingiTibbiyKorik()));
+        cadre.setSectionNumber(cadreDTO.getSectionNumber());
+        cadre.setPosition(cadreDTO.getPosition());
+        cadre.setLastMedicalCheck(parseDate(cadreDTO.getLastMedicalCheck()));
+        cadre.setNextMedicalCheck(parseDate(cadreDTO.getNextMedicalCheck()));
         cadre.setPhoneNumber(cadreDTO.getPhoneNumber());
         cadre.setJshshr(cadreDTO.getJshshr());
-        cadre.setStatus(StatusKadr.valueOf(cadreDTO.getStatus()));
+        cadre.setStatus(CadreStatus.valueOf(cadreDTO.getStatus()));
         return cadre;
     }
 
@@ -49,14 +50,14 @@ public class CadreMapper {
 
     private  String formatDate(Date date)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return date != null ? dateFormat.format(date) : null;
     }
 
     private  Date parseDate(String dateStr)
     {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return dateStr != null ? dateFormat.parse(dateStr) : null;
         } catch (ParseException e) {
             throw new RuntimeException("Date format cast qilishda xatolik");

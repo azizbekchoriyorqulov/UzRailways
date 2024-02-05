@@ -35,14 +35,14 @@ public class CadreController {
 
     @PostMapping(value = "/add" , consumes = {MediaType.APPLICATION_JSON_VALUE ,
             MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<KadrResponse> addKadr(@RequestPart("kadrDTO")String stringKadrDTO ,
+    public ResponseEntity<KadrResponse> addKadr(@RequestPart("cadreDTO")String stringKadrDTO ,
                                                 @RequestPart("photo")MultipartFile photo)
     {
         return cadreService.add(stringKadrDTO , photo);
     }
 
     @GetMapping("/image/{photoId}")
-    public ResponseEntity viewPhoto(@PathVariable UUID photoId) {
+    public ResponseEntity<?> viewPhoto(@PathVariable UUID photoId) {
         String fileUrlById = photoService.findFileUrlById(photoId);
         try {
 

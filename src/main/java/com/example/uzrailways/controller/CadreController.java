@@ -1,5 +1,6 @@
 package com.example.uzrailways.controller;
 
+import com.example.uzrailways.domain.model.CadreDTO;
 import com.example.uzrailways.domain.response.CadreResponse;
 import com.example.uzrailways.domain.response.KadrResponse;
 import com.example.uzrailways.service.CadreService;
@@ -39,14 +40,15 @@ public class CadreController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> getListCadre(
+    public ResponseEntity<CadreResponse> getListCadre(
             @RequestParam(value = "page", defaultValue = "0") Integer pageNum,
             @RequestParam(value = "size", defaultValue = "100") Integer size,
             @RequestParam(value = "sortBy", defaultValue = "fullName") String sortBy,
             @RequestParam(value = "asc", defaultValue = "-1") String asc) {
-        List<CadreResponse> listKadrDTO = cadreService.getListCadreAsDTO(pageNum, size, sortBy, asc);
-        return ResponseEntity.ok().body(new CadreResponse(true, "List kadr's", listKadrDTO));
+        List<CadreDTO> dtoList = cadreService.getListCadreAsDTO(pageNum, size, sortBy, asc);
+        return ResponseEntity.ok().body(new CadreResponse(true, "List cadres", dtoList));
     }
+
 }
 
 

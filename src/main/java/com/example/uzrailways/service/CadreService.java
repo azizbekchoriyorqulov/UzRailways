@@ -3,7 +3,6 @@ package com.example.uzrailways.service;
 import com.example.uzrailways.domain.entity.Cadre;
 import com.example.uzrailways.domain.entity.Photo;
 import com.example.uzrailways.domain.model.CadreDTO;
-import com.example.uzrailways.domain.response.CadreResponse;
 import com.example.uzrailways.domain.response.KadrResponse;
 import com.example.uzrailways.mapper.CadreMapper;
 import com.example.uzrailways.repository.KadrRepository;
@@ -11,6 +10,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,12 +45,19 @@ public class CadreService {
 
         Cadre savedKadr = kadrRepository.save(cadre);
 
-        return ResponseEntity.ok().body(new KadrResponse(true,"Succesfully saved",kadrMapper.mapToDTO(savedKadr)));
+        return ResponseEntity.ok().body(new KadrResponse(true,"Succesfully saved",cadreMapper.mapToDTO(savedKadr)));
 
     }
 
-    public List<CadreResponse> getListCadreAsDTO(Integer pageNum, Integer size, String sortBy, String asc)
+    public List<CadreDTO> getListCadreAsDTO(Integer pageNum, Integer size, String sortBy, String asc)
     {
+        Pageable pageable;
+        if (asc.equals("-1"))
+            pageable = PageRequest.of(pageNum,size, Sort.by(Sort.Direction.DESC,sortBy) );
+        else
+            pageable = PageRequest.of(pageNum,size, Sort.by(Sort.Direction.ASC,sortBy) );
 
+        List<Cadre> dtoList = kadrRepository.findAll(pageable).getContent();
+        return cadreMapper.mapCadreToDtoList(dtoList);
     }
 }

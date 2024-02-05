@@ -3,6 +3,7 @@ package com.example.uzrailways.mapper;
 import com.example.uzrailways.domain.entity.Cadre;
 import com.example.uzrailways.domain.enums.CadreStatus;
 import com.example.uzrailways.domain.model.CadreDTO;
+import com.example.uzrailways.exeption.DateFormatCastException;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -41,7 +42,7 @@ public class CadreMapper {
         return cadre;
     }
 
-    public List<CadreDTO> mapKadrListToDTOList(List<Cadre> cadreList)
+    public List<CadreDTO> mapCadreToDtoList(List<Cadre> cadreList)
     {
         return cadreList.stream()
                 .map(this::mapToDTO)
@@ -60,7 +61,7 @@ public class CadreMapper {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return dateStr != null ? dateFormat.parse(dateStr) : null;
         } catch (ParseException e) {
-            throw new RuntimeException("Date format cast qilishda xatolik");
+            throw new DateFormatCastException("Error while casting date format, Expected format:\"yyyy-MM-dd\" , received:"+dateStr);
         }
     }
 }

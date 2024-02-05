@@ -2,6 +2,7 @@ package com.example.uzrailways.controller;
 
 import com.example.uzrailways.domain.response.CadreResponse;
 import com.example.uzrailways.domain.response.CadreResponse;
+import com.example.uzrailways.domain.response.KadrResponse;
 import com.example.uzrailways.service.CadreService;
 import com.example.uzrailways.service.PhotoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,19 +33,13 @@ public class CadreController {
         return ResponseEntity.ok().body("Test path OK Bro...");
     }
 
-//    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_JSON_VALUE,
-//            MediaType.MULTIPART_FORM_DATA_VALUE})
-//    public ResponseEntity<?> addCad(@RequestPart("CadDTO") String stringCadreResponse, @RequestPart("photo") MultipartFile photo) {
-//        System.out.println("stringCadDTO = " + stringCadreResponse);
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        CadreResponse CadreResponse = null;
-//        try {
-//            CadreResponse = objectMapper.readValue(stringCadreResponse, CadreResponse.class);
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e + " JSON DAN KADRDTO YASASHDA MUAMMO...");
-//        }
-//        return cadreService.add(stringCadreResponse, photo);
-//    }
+    @PostMapping(value = "/add" , consumes = {MediaType.APPLICATION_JSON_VALUE ,
+            MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<KadrResponse> addKadr(@RequestPart("kadrDTO")String stringKadrDTO ,
+                                                @RequestPart("photo")MultipartFile photo)
+    {
+        return cadreService.add(stringKadrDTO , photo);
+    }
 
     @GetMapping("/image/{photoId}")
     public ResponseEntity viewPhoto(@PathVariable UUID photoId) {

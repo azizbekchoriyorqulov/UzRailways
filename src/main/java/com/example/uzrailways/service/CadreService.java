@@ -1,8 +1,12 @@
 package com.example.uzrailways.service;
 
+import com.example.uzrailways.domain.entity.Cadre;
+import com.example.uzrailways.domain.entity.Photo;
 import com.example.uzrailways.domain.model.KadrDTO;
 import com.example.uzrailways.domain.response.KadrResponse;
+import com.example.uzrailways.mapper.CadreMapper;
 import com.example.uzrailways.repository.KadrRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +20,7 @@ public class CadreService {
     private final PhotoService photoService;
     private final KadrRepository kadrRepository;
     private final ModelMapper modelMapper;
+    private final CadreMapper cadreMapper;
 
     public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo) {
         System.out.println("stringKadrDTO = " + stringKadrDTO);
@@ -27,7 +32,7 @@ public class CadreService {
             throw new RuntimeException(e+" JSON DAN KADRDTO YASASHDA MUAMMO....");
         }
 
-        Kadr kadr = kadrMapper.mapToEntity(kadrDTO);
+        Cadre cadre = cadreMapper.mapToEntity(kadrDTO);
 
         Photo photoOfKadr = photoService.savePhotoToServer(photo);
         kadr.setRasm(photoOfKadr);

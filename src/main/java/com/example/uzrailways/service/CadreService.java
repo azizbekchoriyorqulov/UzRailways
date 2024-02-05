@@ -35,9 +35,9 @@ public class CadreService {
         Cadre cadre = cadreMapper.mapToEntity(kadrDTO);
 
         Photo photoOfKadr = photoService.savePhotoToServer(photo);
-        kadr.setRasm(photoOfKadr);
+        cadre.setPhoto(photoOfKadr);
 
-        Kadr savedKadr = kadrRepository.save(kadr);
+        Cadre savedKadr = kadrRepository.save(cadre);
 
         return ResponseEntity.ok().body(new KadrResponse(true,"Succesfully saved",kadrMapper.mapToDTO(savedKadr)));
 

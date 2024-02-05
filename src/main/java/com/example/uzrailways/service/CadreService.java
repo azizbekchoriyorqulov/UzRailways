@@ -2,7 +2,7 @@ package com.example.uzrailways.service;
 
 import com.example.uzrailways.domain.entity.Cadre;
 import com.example.uzrailways.domain.entity.Photo;
-import com.example.uzrailways.domain.model.KadrDTO;
+import com.example.uzrailways.domain.model.CadreDTO;
 import com.example.uzrailways.domain.response.KadrResponse;
 import com.example.uzrailways.mapper.CadreMapper;
 import com.example.uzrailways.repository.KadrRepository;
@@ -25,14 +25,14 @@ public class CadreService {
     public ResponseEntity<KadrResponse> add(String stringKadrDTO, MultipartFile photo) {
         System.out.println("stringKadrDTO = " + stringKadrDTO);
         ObjectMapper objectMapper = new ObjectMapper();
-        KadrDTO kadrDTO ;
+        CadreDTO cadreDTO;
         try {
-            kadrDTO = objectMapper.readValue(stringKadrDTO, KadrDTO.class);
+            cadreDTO = objectMapper.readValue(stringKadrDTO, CadreDTO.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e+" JSON DAN KADRDTO YASASHDA MUAMMO....");
         }
 
-        Cadre cadre = cadreMapper.mapToEntity(kadrDTO);
+        Cadre cadre = cadreMapper.mapToEntity(cadreDTO);
 
         Photo photoOfKadr = photoService.savePhotoToServer(photo);
         cadre.setPhoto(photoOfKadr);

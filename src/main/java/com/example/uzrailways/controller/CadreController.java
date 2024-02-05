@@ -61,6 +61,12 @@ public class CadreController {
     {
         return cadreService.update(id,updateTo);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<KadrResponse> delete(@PathVariable Long id)
+    {
+        return cadreService.delete(id);
+    }
 }
 
 

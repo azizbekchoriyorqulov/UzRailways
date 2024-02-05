@@ -87,4 +87,13 @@ public class CadreService {
             throw new UserNotFoundException("User not found by Id :"+id);
 
     }
+
+    public ResponseEntity<KadrResponse> delete(Long id)
+    {
+        cadreRepository.deleteById(id);
+        if (cadreRepository.existsById(id))
+            return ResponseEntity.ok().body( new KadrResponse(true,"Successfully deleted",null));
+        else
+            throw new UserNotFoundException("User not found by id: "+id);
+    }
 }

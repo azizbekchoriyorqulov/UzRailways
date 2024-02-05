@@ -10,14 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CadreResponse {
-    private String fullName;
-    private String sectionNumber;
-    private String Postion;
-    private String lastMedicalCheck;
-    private String nextMedicalCheck;
-    private String phoneNumber;
-    private String jshshr;
-    private String status;
-    private String photoHttpUrl;
-    private String wordFileHttpUrl;
+    boolean isSuccess;
+    String message;
+    Object object;
 }

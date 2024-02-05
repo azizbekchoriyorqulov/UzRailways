@@ -69,11 +69,11 @@ public class PhotoService
          return  photoRepository.findFileUrlById(uuid).orElse(null);
     }
 
-    public ResponseEntity<?> viewKadrPhoto(UUID photoId)
+    public ResponseEntity<?> viewCadrePhoto(UUID photoId)
     {
         String fileUrlById = findFileUrlById(photoId);
         if (fileUrlById==null)
-            throw new NullPointerException(photoId+" id'lik rasm topilmadi");
+            throw new NullPointerException("Photo not found , photo id:"+photoId);
         try
         {
             Resource resource = new UrlResource(new File(fileUrlById).toURI());
